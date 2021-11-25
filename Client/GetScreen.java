@@ -2,8 +2,11 @@ package Client;
 
 import java.awt.*;
 import java.io.*;
+import java.nio.ByteBuffer;
+
 import javax.imageio.*;
 import javax.swing.*;
+import java.awt.image.*;
 
 class GetScreen extends Thread{
 	// private ObjectInputStream cObjectInputStream = null;
@@ -21,15 +24,13 @@ class GetScreen extends Thread{
 	public void run(){
 		try{
 			//Read screenshots of the client and then draw them
-			while(go){
-				byte[] bytes = new byte[1024*1024];
-				int count = 0;
-				// i dint get this part of line at all!!
-				do{
-					count += is.read(bytes,count,bytes.length-count);
-				}while(!(count>4 && bytes[count-2]==(byte)-1 && bytes[count-1]==(byte)-39));
+			  byte[] sizeAr = new byte[4];
+				is.read(sizeAr);
+				int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
 
-				serverScreen = ImageIO.read(new ByteArrayInputStream(bytes));
+				byte[] imageAr = new byte[size];
+				is.read(imageAr);
+
 				serverScreen = serverScreen.getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_FAST);
 
 				//Draw the received screenshots

@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
 import java.net.*;
+import java.nio.ByteBuffer;
+
 import javax.imageio.*;
 
 class ShareScreen extends Thread{
@@ -10,7 +12,7 @@ class ShareScreen extends Thread{
   Robot robot;
   Rectangle rect;
   boolean go;
-  OutputStream oos;
+  OutputStream os;
 
   ShareScreen (Socket s, Robot r, Rectangle re) {
     this.socket = s;
@@ -22,15 +24,24 @@ class ShareScreen extends Thread{
 
   public void run() {
     try {
-      oos = socket.getOutputStream();
+      os = socket.getOutputStream();
     } catch (Exception e) {
       System.out.println(e);
     }
 
     while(go) {
       BufferedImage image = robot.createScreenCapture(rect);
+      
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+
       try {
-        ImageIO.write(image, "jpeg", oos);
+        ImageIO.write(image, "jpeg", baos);
+        byte[] size = ByteBuffer.allocate(4).putInt(baos.size()).array();
+        os.write(size);
+        os.write(baos.toByteArray());
+        os.flush();
+
       }catch (Exception e) {
         System.out.println(e);
       }
