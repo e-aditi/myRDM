@@ -62,6 +62,7 @@ class SendCommand implements KeyListener, MouseMotionListener, MouseListener{
 		writer.flush();
 	}
 
+	// this part is also not clear..
 	public void mouseReleased(MouseEvent e){
 		writer.println(Commands.RELEASE_MOUSE.getAbbrev());
 		int button = e.getButton();

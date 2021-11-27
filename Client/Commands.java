@@ -1,11 +1,11 @@
 package Client;
 
 public enum Commands{
-	PRESS_MOUSE(-1),
-	RELEASE_MOUSE(-2),
-	PRESS_KEY(-3),
-	RELEASE_KEY(-4),
-	MOVE_MOUSE(-5);
+	PRESS_MOUSE(-10),
+	RELEASE_MOUSE(-12),
+	PRESS_KEY(-13),
+	RELEASE_KEY(-14),
+	MOVE_MOUSE(-15);
 
 	private int abbrev;
 

@@ -23,15 +23,15 @@ class GetCommands extends Thread{
       while(go) {
         int command = sc.nextInt();
         switch(command) {
-          case-1: robot.mousePress(sc.nextInt());
+          case-10: robot.mousePress(sc.nextInt());
           break;
-          case-2: robot.mouseRelease(sc.nextInt());
+          case-12: robot.mouseRelease(sc.nextInt());
           break;
-          case-3: robot.keyPress(sc.nextInt());
+          case-13: robot.keyPress(sc.nextInt());
           break;
-          case-4: robot.keyRelease(sc.nextInt());
+          case-14: robot.keyRelease(sc.nextInt());
           break;
-          case-5: robot.mouseMove(sc.nextInt(), sc.nextInt());
+          case-15: robot.mouseMove(sc.nextInt(), sc.nextInt());
           break;
 
         }
