@@ -37,7 +37,7 @@ class ShareScreen extends Thread{
 
       try {
         ImageIO.write(image, "jpeg", baos);
-        byte[] size = ByteBuffer.allocate(4).putInt(baos.size()).array();
+        byte[] size = ByteBuffer.allocate(8).putInt(baos.size()).array();
         os.write(size);
         os.write(baos.toByteArray());
         os.flush();
@@ -53,5 +53,4 @@ class ShareScreen extends Thread{
       }
     }
   }
-
 }
