@@ -29,6 +29,8 @@ class GetScreen extends Thread{
 				is.read(sizeAr);
 				int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
 
+				System.out.println(size);
+
 				byte[] imageAr = new byte[size];
 				is.read(imageAr);
 
