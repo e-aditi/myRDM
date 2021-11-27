@@ -1,3 +1,5 @@
+// reference - https://www.codegrepper.com/code-examples/java/java+send+an+image+over+a+socket
+
 package Server;
 import java.awt.*;
 import java.awt.image.*;
@@ -37,7 +39,7 @@ class ShareScreen extends Thread{
 
       try {
         ImageIO.write(image, "jpeg", baos);
-        byte[] size = ByteBuffer.allocate(8).putInt(baos.size()).array();
+        byte[] size = ByteBuffer.allocate(32).putInt(baos.size()).array();
         os.write(size);
         os.write(baos.toByteArray());
         os.flush();

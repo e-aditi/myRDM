@@ -25,7 +25,7 @@ class GetScreen extends Thread{
 		try{
 			//Read screenshots of the client and then draw them
 			while(go) {
-				byte[] sizeAr = new byte[8];
+				byte[] sizeAr = new byte[32];
 				is.read(sizeAr);
 				int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
 
