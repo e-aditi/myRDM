@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
+import javax.net.*;
+import javax.net.ssl.*;
 
 public class Client extends JFrame implements ActionListener{
   static String port = "4000";
@@ -20,7 +22,9 @@ public class Client extends JFrame implements ActionListener{
 
   public void initialize (String ip, int port) {
     try {
-      cs = new Socket(ip, port);
+      SocketFactory socketFactory = SSLSocketFactory.getDefault();
+
+      cs = socketFactory.createSocket(ip, port);
       System.out.println("Conneting to the server");
       authenticate(cs);
 

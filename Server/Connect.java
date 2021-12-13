@@ -4,6 +4,7 @@ import java.awt.*;
 // import javax.swing.*;
 import java.io.*;
 import java.net.*;
+import javax.net.*;
 
 class Connect {
   ServerSocket socket;
@@ -17,7 +18,11 @@ class Connect {
     Rectangle rect = null;
     try {
       System.out.println("waiting for client to connect..");
-      socket = new ServerSocket(port);
+      ServerSocketFactory serverSocketFactory = ServerSocketFactory.getDefault();
+      socket =
+      serverSocketFactory.createServerSocket(port);
+
+      //socket = new ServerSocket(port);
 
       GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
       GraphicsDevice gdev = genv.getDefaultScreenDevice();
