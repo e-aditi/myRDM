@@ -5,10 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
-import javax.net.*;
 import javax.net.ssl.*;
-import java.security.Security;
-//import com.sun.net.ssl.internal.ssl.Provider;
 
 
 public class Client extends JFrame implements ActionListener{

@@ -1,11 +1,9 @@
 package Client;
 
 import java.awt.*;
-// import java.beans.*;
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
-// import java.util.zip.*;
 
 class CreateFrame extends Thread{
   String width, height;

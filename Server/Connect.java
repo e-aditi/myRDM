@@ -1,15 +1,11 @@
 package Server;
 
 import java.awt.*;
-// import javax.swing.*;
 import java.io.*;
 import java.net.*;
 import javax.net.*;
-import java.security.*;
 import javax.net.ssl.*;
-//import com.sun.net.ssl.internal.ssl.Provider;
 
-//import SunJSSE.ssl.Provider;
 
 class Connect {
   ServerSocket socket;
@@ -26,8 +22,6 @@ class Connect {
       ServerSocketFactory serverSocketFactory = SSLServerSocketFactory.getDefault();
       socket =
       serverSocketFactory.createServerSocket(port);
-
-      //socket = new ServerSocket(port);
 
       GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
       GraphicsDevice gdev = genv.getDefaultScreenDevice();
