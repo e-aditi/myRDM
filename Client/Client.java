@@ -7,10 +7,13 @@ import java.io.*;
 import java.net.*;
 import javax.net.*;
 import javax.net.ssl.*;
+import java.security.Security;
+//import com.sun.net.ssl.internal.ssl.Provider;
+
 
 public class Client extends JFrame implements ActionListener{
   static String port = "4000";
-  private Socket cs;
+  private SSLSocket cs;
   DataOutputStream keyout;
   DataInputStream check;
   String verify;
@@ -21,10 +24,11 @@ public class Client extends JFrame implements ActionListener{
   JTextField text;
 
   public void initialize (String ip, int port) {
+    
     try {
-      SocketFactory socketFactory = SSLSocketFactory.getDefault();
+      SSLSocketFactory socketFactory = (SSLSocketFactory)SSLSocketFactory.getDefault();
 
-      cs = socketFactory.createSocket(ip, port);
+      cs = (SSLSocket)socketFactory.createSocket(ip, port);
       System.out.println("Conneting to the server");
       authenticate(cs);
 
@@ -64,11 +68,16 @@ public class Client extends JFrame implements ActionListener{
 
   public void actionPerformed(ActionEvent ae) {
     String value1 = text.getText();
+    System.out.println("value read.");
     try {
+      cs.startHandshake();
       keyout = new DataOutputStream(cs.getOutputStream());
       check = new DataInputStream(cs.getInputStream());
+      System.out.println("data in and data out done..");
       keyout.writeUTF(value1);
+      System.out.println("write utf done.");
       verify = check.readUTF();
+
     }catch (Exception e) {
       System.out.println(e);
     }

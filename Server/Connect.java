@@ -5,6 +5,11 @@ import java.awt.*;
 import java.io.*;
 import java.net.*;
 import javax.net.*;
+import java.security.*;
+import javax.net.ssl.*;
+//import com.sun.net.ssl.internal.ssl.Provider;
+
+//import SunJSSE.ssl.Provider;
 
 class Connect {
   ServerSocket socket;
@@ -18,7 +23,7 @@ class Connect {
     Rectangle rect = null;
     try {
       System.out.println("waiting for client to connect..");
-      ServerSocketFactory serverSocketFactory = ServerSocketFactory.getDefault();
+      ServerSocketFactory serverSocketFactory = SSLServerSocketFactory.getDefault();
       socket =
       serverSocketFactory.createServerSocket(port);
 
@@ -36,12 +41,14 @@ class Connect {
       drawGUI();
 
       while(true) {
+        System.out.println("in while.");
         Socket sc = socket.accept();
         keyin = new DataInputStream(sc.getInputStream());
         check = new DataOutputStream(sc.getOutputStream());
         String k = keyin.readUTF();
+        System.out.println("readutf done.");
 
-        System.out.println(Server.getSKey());
+        System.out.println(k);
         if(k.equals(Server.getSKey())) {
           check.writeUTF("yes");
           check.writeUTF(width);
