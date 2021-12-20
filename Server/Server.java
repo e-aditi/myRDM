@@ -11,7 +11,7 @@ public class Server extends JFrame implements ActionListener{
   JLabel info, dummy;
 
   Server() {
-    secretKey = "aditie";
+    secretKey = KeyGenerator.keyGenerate();
     info = new JLabel();
     info.setText("Secret key is: " + secretKey);
     dummy = new JLabel();
