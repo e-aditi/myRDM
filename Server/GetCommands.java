@@ -8,6 +8,7 @@ class GetCommands extends Thread{
   Robot robot;
   boolean go;
   
+  // Called from Connect.java with the parameters Server side socket and robot object.
   GetCommands(Socket s, Robot r) {
     this.socket = s;
     this.robot = r;
@@ -15,6 +16,7 @@ class GetCommands extends Thread{
     start();
   } 
   
+  // Reading the abbreviation from the socket, expanding the abbreviation and performing the required action.
   public void run() {
     Scanner sc = null;
     try {

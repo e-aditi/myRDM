@@ -8,13 +8,13 @@ import javax.swing.*;
 class CreateFrame extends Thread{
   String width, height;
   private JFrame frame = new JFrame();
-
   private JDesktopPane desktop = new JDesktopPane();
   private Socket cs = null;
   private JInternalFrame serverframe = new JInternalFrame("server screen", true, true, true);
 
   private JPanel panel = new JPanel();
 
+  // Called from Client.java code, wiht parameters - client socket, server computer's screen width and height
   CreateFrame(Socket cs, String width, String height) {
     this.width = width;
     this.height = height;
@@ -22,10 +22,10 @@ class CreateFrame extends Thread{
     start();
   }
 
+  // Setting up the frame on the client screen.
   public void drawGUI() {
     frame.add(desktop, BorderLayout.CENTER);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     frame.setExtendedState(frame.getExtendedState()|JFrame.MAXIMIZED_BOTH);
     frame.setVisible(true);
     serverframe.setLayout(new BorderLayout());

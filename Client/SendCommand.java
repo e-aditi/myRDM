@@ -14,6 +14,7 @@ class SendCommand implements KeyListener, MouseMotionListener, MouseListener{
 	double w;
 	double h;
 	
+	/* Called from CreateFrame.java program with parameters - client socket, the frame created on the client side to view the server screen, width and height of the server screen.*/
 	SendCommand(Socket s, JPanel p, String width, String height){
 		cs = s;
 		panel = p;
@@ -22,20 +23,19 @@ class SendCommand implements KeyListener, MouseMotionListener, MouseListener{
 		w = Double.valueOf(width.trim()).doubleValue();
 		h = Double.valueOf(width.trim()).doubleValue();
 
-		//Associate event listeners to the panel
-
 		panel.addKeyListener(this);
 		panel.addMouseListener(this);
 		panel.addMouseMotionListener(this);
 
 		try{
-			//Prepare PrintWriter which will be used to send commands to the client
+			// Initializing PrintWriter to send commands to the client
 			writer = new PrintWriter(cs.getOutputStream());
 			} catch(Exception e) {
 			System.out.println(e);
 		}
 	}
 
+	// Getting the abbreviation from Commands.java file and writing them to the socket.
 	public void mouseDragged(MouseEvent e){
 	}
 

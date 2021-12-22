@@ -6,12 +6,12 @@ import javax.imageio.*;
 import javax.swing.*;
 
 class GetScreen extends Thread{
-	// private ObjectInputStream cObjectInputStream = null;
 	private JPanel panel = null;
 	private boolean go = true;
 	InputStream is = null;
 	Image serverScreen = null;
 
+	/* Called from CreateFrame.java program with parameters - client socket's input stream, the frame created on the client side to view the server screen.*/
 	public GetScreen(InputStream in,JPanel p){
 		is = in;
 		panel = p;
@@ -20,19 +20,17 @@ class GetScreen extends Thread{
 
 	public void run(){
 		try{
-			//Read screenshots of the client and then draw them
+			// Read screenshots of the server and then draw them
 			while(go){
 				byte[] bytes = new byte[1024*1024];
 				int count = 0;
-				// i dint get this part of line at all!!
 				do{
 					count += is.read(bytes,count,bytes.length-count);
 				}while(!(count>4 && bytes[count-2]==(byte)-1 && bytes[count-1]==(byte)-39));
 
 				serverScreen = ImageIO.read(new ByteArrayInputStream(bytes));
 				serverScreen = serverScreen.getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_FAST);
-
-				//Draw the received screenshots
+				
 				Graphics graphics = panel.getGraphics();
 				graphics.drawImage(serverScreen, 0, 0, panel.getWidth(), panel.getHeight(), panel);
 			}

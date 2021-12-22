@@ -11,6 +11,7 @@ public class Server extends JFrame implements ActionListener{
   JLabel info, dummy;
 
   Server() {
+    // Generating a secret key for the session.
     secretKey = KeyGenerator.keyGenerate();
     info = new JLabel();
     info.setText("Secret key is: " + secretKey);
@@ -18,7 +19,6 @@ public class Server extends JFrame implements ActionListener{
     dummy.setText("");
     this.setLayout(new BorderLayout());
     okay = new JButton("Okay");
-
     panel = new JPanel(new GridLayout(2, 1));
     panel.add(info);
     panel.add(dummy);
@@ -38,6 +38,7 @@ public class Server extends JFrame implements ActionListener{
     s.setVisible(true);
   }
 
+  // when the user gives okay, Connect.java is called.
   public void actionPerformed(ActionEvent a) {
     dispose();
     new Connect(Integer.parseInt(port), secretKey);

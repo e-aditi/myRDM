@@ -1,5 +1,6 @@
 package Server;
 
+// Linking the commands with their abbreviations.
 public enum Commands{
 	PRESS_MOUSE(-1),
 	RELEASE_MOUSE(-2),

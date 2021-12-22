@@ -12,6 +12,7 @@ class ShareScreen extends Thread{
   boolean go;
   OutputStream oos;
 
+  // Called from Connect.java with parameters - server sise socket, robot object and the dimension of the server screen
   ShareScreen (Socket s, Robot r, Rectangle re) {
     this.socket = s;
     this.robot = r;
@@ -28,6 +29,7 @@ class ShareScreen extends Thread{
     }
 
     while(go) {
+      // Image is captured and written to the socket.
       BufferedImage image = robot.createScreenCapture(rect);
       try {
         ImageIO.write(image, "jpeg", oos);
