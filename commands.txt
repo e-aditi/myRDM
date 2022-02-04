@@ -1,0 +1,4 @@
+java -Djavax.net.ssl.keyStore=keystore -Djavax.net.ssl.keyStorePassword=123003006_aditi Server/Server
+
+
+java -Djavax.net.ssl.trustStore=truststore -Djavax.net.ssl.trustStorePassword=123003006_aditi Client/Client
